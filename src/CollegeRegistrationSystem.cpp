@@ -15,6 +15,7 @@ void CollegeRegistrationSystem::addRecord()
     while (true)
     {
         cout << "Enter student name: ";
+        cin.ignore();
         getline(cin, name);
 
         if (!name.empty())
