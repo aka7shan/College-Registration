@@ -7,6 +7,7 @@
 class ModuleManager
 {
 private:
+    // std::vector<std::vector<std::string>> modules;
     std::vector<std::vector<std::string>> modules;
 
 public:

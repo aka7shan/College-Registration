@@ -1,5 +1,6 @@
 #include "CollegeRegistrationSystem.h"
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -14,8 +15,7 @@ void CollegeRegistrationSystem::addRecord()
     while (true)
     {
         cout << "Enter student name: ";
-        cin.ignore();
-        getline(cin, name);
+        getline(cin >> ws, name);
 
         if (!name.empty())
         {
@@ -35,7 +35,7 @@ void CollegeRegistrationSystem::addRecord()
         if (!(cin >> rollNumber))
         {
             cin.clear();
-            cin.ignore();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Invalid input. Please enter a number.\n";
             continue;
         }
@@ -72,6 +72,7 @@ void CollegeRegistrationSystem::addRecord()
 
 void CollegeRegistrationSystem::updateRecord()
 {
+    if(studentRecords.empty()) {cout<<"No Record to update"; return;}
     int rollNumber;
     cout << "Enter roll number to update: ";
     cin >> rollNumber;
@@ -117,7 +118,6 @@ void CollegeRegistrationSystem::updateRecord()
             return;
         }
     }
-    cout << "Record not found.\n";
 }
 
 void CollegeRegistrationSystem::getAnyRecord()
@@ -165,7 +165,7 @@ void CollegeRegistrationSystem::getAllRecords()
 
 void CollegeRegistrationSystem::runMenu()
 {
-    char choice;
+    int choice;
     bool flag = true;
     while (flag)
     {
@@ -178,24 +178,32 @@ void CollegeRegistrationSystem::runMenu()
         cout << "5. Back\n";
         cout << "\n----------------------------------\n";
 
-        cout << "Enter your choice: ";
-        cin>>choice;
+        while (true) {
+       cout << "Enter your choice: ";
+        if (cin >> choice) {
+            cin.ignore(); 
+            break;
+        }
+        cin.clear();  
+        cin.ignore();  
+        cout << "Invalid Input. Please enter a again.\n";
+    }
 
         switch (choice)
         {
-        case '1':
+        case 1:
             addRecord();
             break;
-        case '2':
+        case 2:
             updateRecord();
             break;
-        case '3':
+        case 3:
             getAnyRecord();
             break;
-        case '4':
+        case 4:
             getAllRecords();
             break;
-        case '5':
+        case 5:
             cout << "Exiting.\n";
             flag = false;
             break;
