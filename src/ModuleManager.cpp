@@ -1,12 +1,11 @@
 #include "ModuleManager.h"
 #include <iostream>
-#include <limits>
 
 using namespace std;
 
 void ModuleManager::runMenuManager()
 {
-    int choice;
+    char choice;
     bool flag = true;
 
     while (flag)
@@ -19,29 +18,21 @@ void ModuleManager::runMenuManager()
         cout << "4. Back\n";
         cout << "\n----------------------------------\n";
         cout << "Enter your choice: ";
-
-        if (!(cin >> choice))
-        {
-            cin.clear();                                                   
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-            cout << "Invalid input. Please enter a number.\n";
-            continue;
-        }
-
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> choice;
+       
 
         switch (choice)
         {
-        case 1:
+        case '1':
             addModule();
             break;
-        case 2:
+        case '2':
             displayModulesByYear();
             break;
-        case 3:
+        case '3':
             displayAllModules();
             break;
-        case 4:
+        case '4':
             cout << "Exiting.\n";
             flag = false;
             break;

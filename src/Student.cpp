@@ -4,6 +4,7 @@ using namespace std;
 Student::Student(const string &name, int rollNumber, const string &mobileNumber, const string &collegeYear, const string &bloodGroup)
 {
     this->name = name;
+    // Student::name= name;
     this->rollNumber = rollNumber;
     this->mobileNumber = mobileNumber;
     this->collegeYear = collegeYear;

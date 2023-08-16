@@ -1,6 +1,5 @@
 #include "CollegeRegistrationSystem.h"
 #include <iostream>
-#include <limits>
 
 using namespace std;
 
@@ -36,13 +35,10 @@ void CollegeRegistrationSystem::addRecord()
         if (!(cin >> rollNumber))
         {
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.ignore();
             cout << "Invalid input. Please enter a number.\n";
             continue;
         }
-
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
         for (const Student &student : studentRecords)
         {
             if (student.getRollNumber() == rollNumber)
@@ -60,13 +56,13 @@ void CollegeRegistrationSystem::addRecord()
     }
 
     cout << "Enter mobile number: ";
-    getline(cin, mobileNumber);
+    getline(cin >> ws, mobileNumber);
 
     cout << "Enter college year: ";
-    getline(cin, collegeYear);
+    getline(cin >> ws, collegeYear);
 
     cout << "Enter blood group: ";
-    getline(cin, bloodGroup);
+    getline(cin >> ws, bloodGroup);
 
     Student student(name, rollNumber, mobileNumber, collegeYear, bloodGroup);
     studentRecords.push_back(student);
